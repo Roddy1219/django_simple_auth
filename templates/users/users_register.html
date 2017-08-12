@@ -1,0 +1,135 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>用户登录、注册项目</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Free HTML5 Template by FreeHTML5.co"/>
+    <meta name="keywords" content="用户管理项目"/>
+
+
+    <meta name="twitter:card" content=""/>
+
+
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="{% static 'users/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'users/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'users/css/style.css' %}">
+
+
+    <script src="{% static 'users/js/modernizr-2.6.2.min.js' %}"></script>
+
+
+</head>
+
+<body class="style-3">
+
+<div class="container">
+    <div class="row">
+         <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                            aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Simple-User</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="{% url 'index' %}">首页</a></li>
+
+                        {% if  not user.is_authenticated %}
+                            {% comment %}
+                                如果用户没有登录就显示用户登录
+                            {% endcomment %}
+                            <li><a href="{% url 'login' %}">登录</a></li>
+                            <li><a href="{% url 'register' %}">注册</a></li>
+
+                            {% comment %}
+                                如果在登录状态下显示下面的用户管理
+                            {% endcomment %}
+                        {% else %}
+                            <li class="dropdown-menu-right">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false">用户管理 <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{% url 'user_info' %}">用户基本信息</a></li>
+                                    <li><a href="{% url 'rest_pass' %}">重置密码</a></li>
+                                    <li><a href="{% url 'user_logout' %}">退出</a></li>
+                                </ul>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-md-push-8">
+
+
+            <!-- Start Sign In Form -->
+            <form action="#" class="fh5co-form animate-box" data-animate-effect="fadeInRight">
+                <h4>用户注册</h4>
+                {% comment %}  用户注册成功提示 {% endcomment %}
+                <div class="form-group">
+                    <div class="alert alert-success" role="alert">Your info has been saved.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="name" class="sr-only">用户名</label>
+                    <input type="text" class="form-control" id="name" placeholder="用户名" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="email" class="sr-only">邮箱</label>
+                    <input type="email" class="form-control" id="email" placeholder="邮箱" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="password" class="sr-only">密 码</label>
+                    <input type="password" class="form-control" id="password" placeholder="密码" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="re-password" class="sr-only">再次输入密码</label>
+                    <input type="password" class="form-control" id="re-password" placeholder="重复密码"
+                           autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="remember"><input type="checkbox" id="remember"> 记住我</label>
+                </div>
+
+                <div class="form-group">
+                    <p>如果您已注册请直接登录 <a href="{% url 'login' %}">登录</a></p>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="注 册" class="btn btn-primary">
+                </div>
+            </form>
+            <!-- END Sign In Form -->
+
+
+        </div>
+    </div>
+
+</div>
+
+<script src="{% static 'users/js/jquery.min.js' %}"></script>
+
+<script src="{% static 'users/js/bootstrap.min.js' %}"></script>
+
+<script src="{% static 'users/js/jquery.placeholder.min.js' %}"></script>
+
+<script src="{% static 'users/js/jquery.waypoints.min.js' %}"></script>
+
+<script src="{% static 'users/js/main.js' %}"></script>
+
+</body>
+</html>
+
